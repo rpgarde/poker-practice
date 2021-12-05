@@ -3,17 +3,11 @@ const fileName = 'poker-hands.txt';
 const readline = require('readline');
 const {handEvaluator} = require('./handEvaluator')
 
-// Read the file 
-// fs.readFile(fileName, 'utf8', function(err, data) {
-//     if (err) throw err;
-//     console.log('OK: ' + fileName);
-//     console.log(data)
-//   });  
-
 const myInterface = readline.createInterface({
     input: fs.createReadStream(fileName)
 });
 
+// Counters
 let roundNumber = 0;
 let player1Score = 0;
 let player2Score = 0;
@@ -23,7 +17,7 @@ let exceptionCount = 0;
 myInterface.on('line', function (line) {
     roundNumber++;
     // split Player 1 and Player 2 
-    console.log(`Round number ${roundNumber}`);
+    console.log(`\nRound number ${roundNumber}`);
     let player1 = line.slice(0, 14).trim()
     console.log(`Player 1: ${player1}`)
 
@@ -43,6 +37,7 @@ myInterface.on('line', function (line) {
         console.log('player 2 won')
         player2Score++
     }
+    //TODO: Add evaluations for when they are equal
     // 9 straight flush check
     else if (handEvaluator(player1).straightFlush&&!handEvaluator(player2).straightFlush){
         console.log('player 1 won')
@@ -128,6 +123,8 @@ myInterface.on('line', function (line) {
         console.log('Exception. No one won!')
         exceptionCount++
     }
+    // Now everything gets tallied
+    console.log(`\nFINAL SCORES:\n`)
     console.log(`Player 1: ${player1Score}`)
     console.log(`Player 2: ${player2Score}`)
     console.log(`Exception count: ${exceptionCount}`)
