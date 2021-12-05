@@ -9,4 +9,4 @@ Currently, it scores 458 out of the 500 cases. The remaining cases are because t
 
 1. Install node.js if you haven't got it
 2. Git clone to your machine 
-3. Run `node index` 
+3. Navigate to the root of the application, then run `node index` 
