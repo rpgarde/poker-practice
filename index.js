@@ -134,8 +134,4 @@ myInterface.on('line', function (line) {
     }
 });
 
-// Player 1 and Player 2's hand each get evaluated 
-
-// Player 1 and Player 2's hands now get compared 
-
 // If there isn't a clear winner, then it goes down more layers of evaluation

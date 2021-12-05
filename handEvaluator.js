@@ -60,7 +60,6 @@ const handEvaluator = (hand) => {
             if (handFaceValues[i] != royalSample[i]){
                 return false
             }
-        // If all elements were same. 
         return true
         }
     }
