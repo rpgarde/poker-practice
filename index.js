@@ -21,101 +21,103 @@ myInterface.on('line', function (line) {
     let player1 = line.slice(0, 14).trim()
     console.log(`Player 1: ${player1}`)
 
-    console.log(handEvaluator(player1))
+    const evaluatedPlayer1 = handEvaluator(player1)
+    console.log(evaluatedPlayer1)
 
     let player2 = line.slice(-15).trim()
     console.log(`Player 2: ${player2}`)
-    
-    console.log(handEvaluator(player2))
+
+    const evaluatedPlayer2 = handEvaluator(player2)
+    console.log(evaluatedPlayer2)
 
     // 10 royal flush check 
-    if(handEvaluator(player1).royalFlush&&!handEvaluator(player2).royalFlush){
+    if(handEvaluator(player1).royalFlush&&!evaluatedPlayer2.royalFlush){
         console.log('player 1 won')
         player1Score++
     }
-    else if(!handEvaluator(player2).royalFlush&&handEvaluator(player2).royalFlush){
+    else if(!evaluatedPlayer2.royalFlush&&evaluatedPlayer2.royalFlush){
         console.log('player 2 won')
         player2Score++
     }
     //TODO: Add evaluations for when they are equal
     // 9 straight flush check
-    else if (handEvaluator(player1).straightFlush&&!handEvaluator(player2).straightFlush){
+    else if (evaluatedPlayer1.straightFlush&&!evaluatedPlayer2.straightFlush){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).straightFlush&&handEvaluator(player2).straightFlush){
+    else if (!evaluatedPlayer1.straightFlush&&evaluatedPlayer2.straightFlush){
         console.log('player 2 won')
         player2Score++
     }
     // 8 four of a kind check 
-    else if (handEvaluator(player1).fourOfAKind&&!handEvaluator(player2).fourOfAKind){
+    else if (evaluatedPlayer1.fourOfAKind&&!evaluatedPlayer2.fourOfAKind){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).fourOfAKind&&handEvaluator(player2).fourOfAKind){
+    else if (!evaluatedPlayer1.fourOfAKind&&evaluatedPlayer2.fourOfAKind){
         console.log('player 2 won')
         player2Score++
     }
     // 7 full house check 
-    else if (handEvaluator(player1).fullHouse&&!handEvaluator(player2).fullHouse){
+    else if (evaluatedPlayer1.fullHouse&&!evaluatedPlayer2.fullHouse){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).fullHouse&&handEvaluator(player2).fullHouse){
+    else if (!evaluatedPlayer1.fullHouse&&evaluatedPlayer2.fullHouse){
         console.log('player 2 won')
         player2Score++
     }
     // 6 flush 
-    else if (handEvaluator(player1).flush&&!handEvaluator(player2).flush){
+    else if (evaluatedPlayer1.flush&&!evaluatedPlayer2.flush){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).flush&&handEvaluator(player2).flush){
+    else if (!evaluatedPlayer1.flush&&evaluatedPlayer2.flush){
         console.log('player 2 won')
         player2Score++
     }
     // 5 straight check
-    else if (handEvaluator(player1).straight&&!handEvaluator(player2).straight){
+    else if (evaluatedPlayer1.straight&&!evaluatedPlayer2.straight){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).straight&&handEvaluator(player2).straight){
+    else if (!evaluatedPlayer1.straight&&evaluatedPlayer2.straight){
         console.log('player 2 won')
         player2Score++
     }
     // 4 three of a kind
-    else if (handEvaluator(player1).threeOfAKind&&!handEvaluator(player2).threeOfAKind){
+    else if (evaluatedPlayer1.threeOfAKind&&!evaluatedPlayer2.threeOfAKind){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).threeOfAKind&&handEvaluator(player2).threeOfAKind){
+    else if (!evaluatedPlayer1.threeOfAKind&&evaluatedPlayer2.threeOfAKind){
         console.log('player 2 won')
         player2Score++
     }
     // 3 two pairs 
-    else if (handEvaluator(player1).twoPairs&&!handEvaluator(player2).twoPairs){
+    else if (evaluatedPlayer1.twoPairs&&!evaluatedPlayer2.twoPairs){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).twoPairs&&handEvaluator(player2).twoPairs){
+    else if (!evaluatedPlayer1.twoPairs&&evaluatedPlayer2.twoPairs){
         console.log('player 2 won')
         player2Score++
     }   
     // 2 pair 
-    else if (handEvaluator(player1).pair&&!handEvaluator(player2).pair){
+    else if (evaluatedPlayer1.pair&&!evaluatedPlayer2.pair){
         console.log('player 1 won')
         player1Score++
     }
-    else if (!handEvaluator(player1).pair&&handEvaluator(player2).pair){
+    else if (!evaluatedPlayer1.pair&&evaluatedPlayer2.pair){
         console.log('player 2 won')
         player2Score++
     }  
     // 1 highest card value
-    else if (handEvaluator(player1).highestCardValue>handEvaluator(player2).highestCardValue){
+    else if (evaluatedPlayer1.highestCardValue>evaluatedPlayer2.highestCardValue){
         console.log('player 1 won')
         player1Score++
     }
-    else if (handEvaluator(player1).highestCardValue<handEvaluator(player2).highestCardValue){
+    else if (evaluatedPlayer1.highestCardValue<evaluatedPlayer2.highestCardValue){
         console.log('player 2 won')
         player2Score++
     }
@@ -127,7 +129,7 @@ myInterface.on('line', function (line) {
     console.log(`\nFINAL SCORES:\n`)
     console.log(`Player 1: ${player1Score}`)
     console.log(`Player 2: ${player2Score}`)
-    console.log(`Exception count: ${exceptionCount}`)
+    console.log(`Unscored count: ${exceptionCount}`)
     return
 });
 
