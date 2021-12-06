@@ -3,6 +3,7 @@ const testHand = '3C 4H 5D 2D 6D'
 const royalSample = [ 10, 11, 12, 13, 14 ]
 // creates a faceValue key value pair so that we can accurately compare the non-numeric values
 const faceValue = (face) => {
+    // FEEDBACK: This should be a switch() not a conglomeration of if elses.
     if (face == 'A'){
         return 14
     }
@@ -19,6 +20,7 @@ const faceValue = (face) => {
         return 10
     }
     else{
+        // FEEDBACK: Having input validation to assert face is 2-9 or A,K,Q,J,T would allow for just Number(face). A regex assertion could have been used to achieve this.
         return parseInt(face, 10)
     }
 }
@@ -27,6 +29,7 @@ const handEvaluator = (hand) => {
     // create hand array that splits face and suit
     const handArr = hand.split(' ')
         .map((card)=>{
+            // FEEDBACK: slices get re-used, so could be initialised as consts. 
             return {
                 face: card.slice(0, -1),
                 suit: card.slice(-1),
@@ -44,9 +47,13 @@ const handEvaluator = (hand) => {
 
     // console.log(flush)
 
+    // FEEDBACK: Wasteful array initialization, everywhere this is used could be done with grabbing .faceValue from each handArr item
     const handFaceValues = (handArr.map(card => card.faceValue))
 
+    // FEEDBACK: .every() could have accessed card.faceValue instead of using handFaceValues
     const straight = handFaceValues.every((card,index,arr)=> {
+            // FEEDBACK: return (index === 0 || card - arr[index-1] === 1)
+            // FEEDBACK: triple equal instead of double
             if(index==0){
                 return true
             }
@@ -65,6 +72,8 @@ const handEvaluator = (hand) => {
     }
 
     // console.log(royal())
+    // FEEDBACK: This double array initialization and forEach is wasteful.
+    // FEEDBACK: Same could have been achieved with a reducer over a single array.
     const occurrencesWithDupes = []
     
     handFaceValues.forEach(card => {
