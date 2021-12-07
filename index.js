@@ -16,6 +16,9 @@ let exceptionCount = 0;
 // Split each line into its own section
 myInterface.on('line', function (line) {
     roundNumber++;
+
+    // FEEDBACK: Slicing will only work if the # of characters never changes. An extra whitespace in the input breaks your code. String.split() with a regex is a better approach.
+
     // split Player 1 and Player 2 
     console.log(`\nRound number ${roundNumber}`);
     let player1 = line.slice(0, 14).trim()
@@ -30,7 +33,10 @@ myInterface.on('line', function (line) {
     const evaluatedPlayer2 = handEvaluator(player2)
     // console.log(evaluatedPlayer2)
 
+    // FEEDBACK: There is no input validation. 
+
     // 10 royal flush check 
+    // FEEDBACK: This sea of if statements should be better written. Potentially a switch or a smarter evaluation. 
     if(handEvaluator(player1).royalFlush&&!evaluatedPlayer2.royalFlush){
         console.log('Player 1 won due to a Royal Flush')
         player1Score++
@@ -126,6 +132,7 @@ myInterface.on('line', function (line) {
         exceptionCount++
     }
     // Now everything gets tallied
+    // FEEDBACK: Hard-coded numbers are almost never a good idea. fs read streams have an .on("end") method that should have been used instead.
     if(roundNumber==500){
     console.log(`=============\nFINAL SCORES:\n=============`)
     console.log(`Player 1: ${player1Score}`)
